@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 Document document = Jsoup.connect(url).get();
                 // Using Elements to get the Meta data
                 Elements description = document.getElementsByTag("p");
-                desc = description.text();
+                desc =  description.get(6).text() + description.get(7).text() + description.get(8).text();
             } catch (IOException e) {
                 e.printStackTrace();
             }
