@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         descbutton.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
                 // Execute Description AsyncTask
-                boolean isConnected = isOnline();
+                boolean isConnected = checkConnectivity();
                 if(isConnected==false)
                 {
                     Toast.makeText(getApplicationContext(),"You are not connected", Toast.LENGTH_SHORT).show();
@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 Document document = Jsoup.connect(url).get();
                 // Using Elements to get the Meta data
                 Elements description = document.getElementsByTag("p");
-                desc =  description.get(6).text() + description.get(7).text() + description.get(8).text();
+                desc =  description.get(6).text() + description.get(7).text() + description.get(8).text() + description.get(9).text();
+                Log.i("INFO",description.text());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public boolean isOnline() {
+    public boolean checkConnectivity() {
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
